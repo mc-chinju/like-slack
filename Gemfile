@@ -20,6 +20,7 @@ gem 'config' # environment settings
 gem 'devise', '~> 4.3'
 gem 'ledermann-rails-settings' # model settings
 gem 'redis', '~> 3.0'
+gem 'webpacker', '~> 2.0'
 gem 'doorkeeper'
 gem 'slim-rails'
 # Use ActiveModel has_secure_password
@@ -35,6 +36,8 @@ group :development do
   gem 'rubocop', '~> 0.49.1', require: false
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'foreman'
+  # gem 'rails-erd'
 end
 
 group :development, :test do
