@@ -20,6 +20,7 @@ gem 'config' # environment settings
 gem 'devise', '~> 4.3'
 gem 'ledermann-rails-settings' # model settings
 gem 'redis', '~> 3.0'
+gem 'doorkeeper'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
