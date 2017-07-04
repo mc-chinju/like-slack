@@ -6,7 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 # defaults
-gem 'coffee-rails', '~> 4.2'
+gem 'coffee-rails', '4.2.2'
 gem 'mysql2', '~> 0.4.4'
 gem 'puma', '~> 3.7'
 gem 'rails', '~> 5.1.2'
@@ -52,6 +52,10 @@ group :test do
   gem 'faker', '~> 1.7.3'
   gem 'rspec-rails', '~> 3.6'
 end
+
+# Device
+#gem "devise"
+#gem "omniauth-twitter"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
