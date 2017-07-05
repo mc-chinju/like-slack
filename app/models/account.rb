@@ -1,4 +1,4 @@
 class Account < ApplicationRecord
-  def belongs_to(devise [, :class_name])
-  end
+  belongs_to :user
+  belongs_to :enterprise
 end
