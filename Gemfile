@@ -21,6 +21,7 @@ gem 'devise', '~> 4.3'
 gem 'ledermann-rails-settings' # model settings
 gem 'redis', '~> 3.0'
 gem 'doorkeeper'
+gem 'slim-rails'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
