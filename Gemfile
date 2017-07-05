@@ -6,7 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 # defaults
-gem 'coffee-rails', '4.2.2'
+gem 'coffee-rails', '~> 4.2'
 gem 'mysql2', '~> 0.4.4'
 gem 'puma', '~> 3.7'
 gem 'rails', '~> 5.1.2'
