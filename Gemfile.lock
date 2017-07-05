@@ -284,7 +284,7 @@ DEPENDENCIES
   capistrano-rbenv (~> 2.0.2)
   capistrano-safe-deploy-to (~> 1.1.1)
   capybara (~> 2.13)
-  coffee-rails (~> 4.2)
+  coffee-rails (= 4.2.2)
   config
   database_cleaner (~> 1.6.1)
   devise (~> 4.3)
