@@ -1,0 +1,21 @@
+h1 Listing enterprises
+
+table
+  thead
+    tr
+      th Account name
+      th
+      th
+      th
+
+  tbody
+    - @enterprises.each do |enterprise|
+      tr
+        td = enterprise.account_name
+        td = link_to 'Show', enterprise
+        td = link_to 'Edit', edit_enterprise_path(enterprise)
+        td = link_to 'Destroy', enterprise, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Enterprise', new_enterprise_path
