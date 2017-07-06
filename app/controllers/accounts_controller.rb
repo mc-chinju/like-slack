@@ -1,4 +1,5 @@
 class AccountsController < ApplicationController
+<<<<<<< HEAD
   before_action :set_account, only: [:show, :edit, :update, :destroy]
 
   # GET /accounts
@@ -71,4 +72,6 @@ class AccountsController < ApplicationController
     def account_params
       params.require(:account).permit(:user_id, :enterprise_id, :role)
     end
+=======
+>>>>>>> 691493f4a5d67782362e3892b71ce864b32cfa1b
 end
