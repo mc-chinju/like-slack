@@ -1,0 +1,9 @@
+p#notice = notice
+
+p
+  strong Account name:
+  = @enterprise.account_name
+
+= link_to 'Edit', edit_enterprise_path(@enterprise)
+'  |
+= link_to 'Back', enterprises_path

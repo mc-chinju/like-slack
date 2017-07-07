@@ -1,0 +1,12 @@
+= form_for @enterprise do |f|
+  - if @enterprise.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@enterprise.errors.count, "error")} prohibited this enterprise from being saved:"
+      ul
+        - @enterprise.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :account_name
+    = f.number_field :account_name
+  .actions = f.submit
