@@ -1,5 +1,6 @@
 class AccountsController < ApplicationController
 <<<<<<< HEAD
+<<<<<<< HEAD
   before_action :set_account, only: [:show, :edit, :update, :destroy]
 
   # GET /accounts
@@ -74,4 +75,6 @@ class AccountsController < ApplicationController
     end
 =======
 >>>>>>> 691493f4a5d67782362e3892b71ce864b32cfa1b
+=======
+>>>>>>> 0e3fa73353bca40df1a4fd50bf466a0ddc9e1542
 end

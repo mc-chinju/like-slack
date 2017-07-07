@@ -6,7 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 # defaults
-gem 'coffee-rails', '~> 4.2'
+gem 'coffee-rails', '4.2.2'
 gem 'mysql2', '~> 0.4.4'
 gem 'puma', '~> 3.7'
 gem 'rails', '~> 5.1.2'
@@ -20,6 +20,10 @@ gem 'config' # environment settings
 gem 'devise', '~> 4.3'
 gem 'ledermann-rails-settings' # model settings
 gem 'redis', '~> 3.0'
+<<<<<<< HEAD
+=======
+gem 'webpacker', '~> 2.0'
+>>>>>>> 0e3fa73353bca40df1a4fd50bf466a0ddc9e1542
 gem 'doorkeeper'
 gem 'slim-rails'
 # Use ActiveModel has_secure_password
@@ -35,6 +39,8 @@ group :development do
   gem 'rubocop', '~> 0.49.1', require: false
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'foreman'
+  # gem 'rails-erd'
 end
 
 group :development, :test do
@@ -52,6 +58,10 @@ group :test do
   gem 'faker', '~> 1.7.3'
   gem 'rspec-rails', '~> 3.6'
 end
+
+# Device
+#gem "devise"
+#gem "omniauth-twitter"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
