@@ -2,7 +2,8 @@ class CreateEnterprises < ActiveRecord::Migration[5.1]
   def change
     create_table :enterprises do |t|
       t.string :name
-      t.integer :accounts_id
+      t.string :account_name, null: false
+      t.integer :accounts_id, null: false
 
       t.timestamps
     end
