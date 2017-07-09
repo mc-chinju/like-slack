@@ -8,6 +8,7 @@ import { Provider, connect } from 'react-redux';
 
 // Action名の定義
 const SEND = 'SEND';
+const SET_MESSAGES = 'SET_MESSAGES';
 
 // Action Creators
 function send(value) {
@@ -41,7 +42,8 @@ class ChatMain extends React.Component {
         // ActionCableが受信したときのコールバック
         received(data) {
           // 受信したデータを解析して状態を更新する
-          this.props.onClick(data['comment'])
+          //this.props.onClick(data['comment'])
+          this.props.setMessages(data['comment'])
         },
         speak(message) {
           // ケーブルを通してコメントを通知。サーバー側のspeakメソッドが呼び出される
@@ -153,6 +155,9 @@ function mapDispatchToProps(dispatch) {
       //dispatch(send(value));
       App.chat.speak(value);
     },
+    setMessages(message) {
+      dispatch(send(message));
+    }
   };
 }
 const AppContainer = connect(
