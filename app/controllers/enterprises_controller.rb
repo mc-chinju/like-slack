@@ -4,7 +4,7 @@ class EnterprisesController < ApplicationController
   # GET /enterprises
   # GET /enterprises.json
   def index
-    @enterprises = Enterprise.all
+    @enterprises = current_user.enterprises
   end
 
   # GET /enterprises/1
