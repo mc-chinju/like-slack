@@ -8,6 +8,7 @@ import { Provider, connect } from 'react-redux';
 
 // Action名の定義
 const SEND = 'SEND';
+const SET_MESSAGES = 'SET_MESSAGES';
 
 // Action Creators
 function send(value) {
@@ -20,6 +21,39 @@ function send(value) {
 
 // MainView
 class ChatMain extends React.Component {
+  // ActionCable
+  componentDidMount() {
+    // ビューのレンダリングが終わったら呼び出されるコールバックでチャンネルにケーブルを接続する
+    this.subscriptChannel();
+  }
+
+  subscriptChannel() {
+    App.chat = App.cable.subscriptions.create(
+      // チャンネルの種類とスライドのIDを指定。これがサーバー側にparamsとしてセットされる。
+      { channel: "ChatChannel", chat_id: 1 },
+      {
+        // ActionCableが接続されたときのコールバック
+        connected() {
+        },
+
+        // ActionCableが切断されたときのコールバック
+        disconnected() {
+        },
+        // ActionCableが受信したときのコールバック
+        received(data) {
+          // 受信したデータを解析して状態を更新する
+          //this.props.onClick(data['comment'])
+          this.props.setMessages(data['comment'])
+        },
+        speak(message) {
+          // ケーブルを通してコメントを通知。サーバー側のspeakメソッドが呼び出される
+          this.perform('speak', {message: message});
+        }
+      }
+    );
+    App.chat.received = App.chat.received.bind(this);
+  }
+
   render() {
     return (
       <div className="main-container">
@@ -59,14 +93,23 @@ FormInput.propTypes = {
 // チャット表示部分
 class ChatDisplay extends React.Component {
   render() {
+    var key = 0;
     return (
-      <div>入力値⇒{this.props.data}</div>
+      <ul>
+        {this.props.data.map((textVal) =>
+          <ChatLine textVal={textVal} key={key++} />
+        )}
+      </ul>
     );
   }
 }
 ChatDisplay.propTypes = {
-  data: React.PropTypes.string,
+  data: React.PropTypes.array,
 };
+
+const ChatLine = props => (
+  <li key={props.key}>{props.textVal}</li>
+)
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
@@ -81,18 +124,18 @@ document.addEventListener('DOMContentLoaded', () => {
 function formReducer(state, action) {
   switch (action.type) {
     case 'SEND':
-      return Object.assign({}, state, {
-        value: action.value,
-      });
+    return Object.assign({}, state, {
+      value: state.value.concat(action.value),
+    });
     default:
-      return state;
+    return state;
   }
 }
 
 /* Storeの実装 */
 
 const initialState = {
-  value: null,
+  value: [],
 };
 const store = createStore(formReducer, initialState);
 
@@ -106,10 +149,15 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     // propsを通して取得する際に使う名前
+    // ここにメソッドを追加していく感じ？
     onClick(value) {
       // Storeのdispatchメソッド（引数はAction Creator）
-      dispatch(send(value));
+      //dispatch(send(value));
+      App.chat.speak(value);
     },
+    setMessages(message) {
+      dispatch(send(message));
+    }
   };
 }
 const AppContainer = connect(
