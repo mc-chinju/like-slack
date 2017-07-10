@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :messages
+  resources :channels
   root to: "main#main"
   resources :enterprises
   devise_for :users
