@@ -28,10 +28,8 @@ class ChannelsController < ApplicationController
 
     respond_to do |format|
       if @channel.save
-
         format.json { render :show, status: :created, location: @channel }
       else
-
         format.json { render json: @channel.errors, status: :unprocessable_entity }
       end
     end
@@ -42,10 +40,8 @@ class ChannelsController < ApplicationController
   def update
     respond_to do |format|
       if @channel.update(channel_params)
-
         format.json { render :show, status: :ok, location: @channel }
       else
-
         format.json { render json: @channel.errors, status: :unprocessable_entity }
       end
     end
@@ -56,8 +52,7 @@ class ChannelsController < ApplicationController
   def destroy
     @channel.destroy
     respond_to do |format|
-    
-      format.json { head :no_content }
+          format.json { head :no_content }
     end
   end
 

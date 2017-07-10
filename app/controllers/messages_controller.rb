@@ -28,10 +28,8 @@ class MessagesController < ApplicationController
 
     respond_to do |format|
       if @message.save
-
         format.json { render :show, status: :created, location: @message }
       else
-
         format.json { render json: @message.errors, status: :unprocessable_entity }
       end
     end
@@ -42,10 +40,8 @@ class MessagesController < ApplicationController
   def update
     respond_to do |format|
       if @message.update(message_params)
-
         format.json { render :show, status: :ok, location: @message }
       else
-
         format.json { render json: @message.errors, status: :unprocessable_entity }
       end
     end
@@ -56,7 +52,6 @@ class MessagesController < ApplicationController
   def destroy
     @message.destroy
     respond_to do |format|
-
       format.json { head :no_content }
     end
   end
