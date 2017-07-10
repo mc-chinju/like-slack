@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  use_doorkeeper
   resources :messages
   resources :channels
   root to: "main#main"

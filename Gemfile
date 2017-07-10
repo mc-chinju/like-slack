@@ -37,6 +37,7 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'foreman'
+  gem 'web-console', '>= 3.3.0'
   # gem 'rails-erd'
 end
 
@@ -46,7 +47,6 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'selenium-webdriver'
-  gem 'web-console', '>= 3.3.0'
 end
 
 group :test do
