@@ -4,20 +4,11 @@ import PropTypes from 'prop-types'
 import { createStore } from 'redux';
 import { Provider, connect } from 'react-redux';
 
-/* Actionsの実装 */
+import sendMessage from './actions/chat';
+import configureStore from './store/configureStore';
+import chat from './reducers/chat';
 
-// Action名の定義
-const SEND = 'SEND';
-const SET_MESSAGES = 'SET_MESSAGES';
-
-// Action Creators
-function send(value) {
-  // Action
-  return {
-    type: SEND,
-    value,
-  };
-}
+const store = configureStore();
 
 // MainView
 class ChatMain extends React.Component {
@@ -120,25 +111,6 @@ document.addEventListener('DOMContentLoaded', () => {
   )
 })
 
-/* Reducersの実装 */
-function formReducer(state, action) {
-  switch (action.type) {
-    case 'SEND':
-    return Object.assign({}, state, {
-      value: state.value.concat(action.value),
-    });
-    default:
-    return state;
-  }
-}
-
-/* Storeの実装 */
-
-const initialState = {
-  value: [],
-};
-const store = createStore(formReducer, initialState);
-
 // Connect to Redux
 function mapStateToProps(state) {
   return {
@@ -156,7 +128,7 @@ function mapDispatchToProps(dispatch) {
       App.chat.speak(value);
     },
     setMessages(message) {
-      dispatch(send(message));
+      dispatch(sendMessage(message));
     }
   };
 }
