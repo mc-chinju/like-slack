@@ -48,14 +48,23 @@ class ChatMain extends React.Component {
   render() {
     return (
       <div className="main-container">
-        <div className="header-container">
-          <h1>Hello {this.props.name}</h1>
+        <div className="side-menu">
+          <ul>
+            <li>
+              #チャットルーム１
+            </li>
+            <li>
+              #チャットルーム２
+            </li>
+          </ul>
         </div>
-        <div className="chat-container">
-          <ChatDisplay data={this.props.value} />
-        </div>
-        <div className="form-container">
-          <FormInput handleClick={this.props.onClick} />
+        <div className="chat-area">
+          <div className="chat-container">
+            <ChatDisplay data={this.props.value} />
+          </div>
+          <div className="form-container">
+            <FormInput handleClick={this.props.onClick} />
+          </div>
         </div>
       </div>
     );
