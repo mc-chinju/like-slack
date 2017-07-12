@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
     <Provider store={store}>
       <AppContainer name="React" />
     </Provider>,
-    document.querySelector('.container'),
+    document.querySelector('.root-container'),
   )
 })
 

@@ -4,10 +4,13 @@ Rails.application.routes.draw do
   resources :channels
   root to: "main#main"
   resources :enterprises
-  devise_for :users
-  # devise_for :users, only: [:sign_in, :sign_out, :session], controllers: {
-  #   registrations: :'users/registrations',
-  #   sessions:      :'users/sessions'
-  # }
+  devise_for :users, only: [:sign_in, :sign_out, :session], controllers: {
+    registrations: :'users/registrations',
+    # sessions:      :'users/sessions'
+  }
+  devise_scope :user do
+    post :'/users', to: 'users/registrations#create', as: :user_registration
+    get :'/users/sign_up', to: 'users/registrations#new', as: :new_user_registration
+  end
   mount ActionCable.server => '/cable'
 end
