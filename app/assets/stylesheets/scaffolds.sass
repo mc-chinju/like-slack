@@ -30,6 +30,14 @@ td
 div
   &.field, &.actions
     margin-bottom: 10px
+button
+  background-color: transparent
+  border: none
+  cursor: pointer
+  outline: none
+  padding: 0
+  appearance: none
+
 #notice
   color: green
 .field_with_errors
@@ -55,18 +63,81 @@ div
     list-style: square
 label
   display: block
-.container
+.contents
   height: 100%
-  .main-container
-    height: 100%
-    position: relative
-    .header-container
-      background-color: #29314c
-      h1
+  .header-container
+    background-color: #29314c
+    height: 70px
+    line-height: 70px
+    h1
+      color: #fff
+      margin: 0
+      text-align: center
+  .container
+    height: calc(100% - 70px)
+    .main-container
+      position: relative
+      height: 100%
+      display: block
+      .side-menu
         color: #fff
-        margin: 0
-        padding: 20px 10px
-    .form-container
-      position: absolute
-      bottom: 0
-      margin: 20px 10px
+        float: left
+        background: #333
+        width: 200px
+        height: 100%
+        ul
+          list-style: none
+          padding: 0 10px
+          font-size: 1.1rem
+          li
+            margin: 5px 0
+      .chat-area
+        position: relative
+        float: left
+        height: 100%
+        width: calc(100% - 200px)
+        display: block
+        .chat-container
+          padding: 20px 20px
+          overflow: hidden
+          height: calc(100% - 70px)
+          height: 80%
+          overflow-y: auto
+          ul
+            list-style: none
+
+            padding: 0
+            display: block
+            li
+              min-height: 30px
+              line-height: 30px
+              border-bottom: 1px solid #AAAAAA
+        .form-container
+          position: absolute
+          bottom: 0
+          margin: 20px 0
+          width: 80%
+          padding-left: 20px
+          input[type="text"]
+            width: 80%
+            float: left
+            height: 30px
+            padding: 0
+            margin: 0
+            border: 1px solid #AAAAAA
+            border-radius: 5px
+          button
+            float: left
+            height: 32px
+            background-color: #29314c
+            color: #fff
+            width: 50px
+            border-radius: 5px
+            margin-left: 5px
+            font-weight: bold
+.clearfix:after
+  display: block
+  clear: both
+  height: 0px
+  visibility: hidden
+  content: "."
