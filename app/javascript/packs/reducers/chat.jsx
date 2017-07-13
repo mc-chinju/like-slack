@@ -3,6 +3,7 @@ import { SEND } from '../actions/chat';
 const initialState = {
   value: [],
   channels: [],
+  isFetching: false,
 };
 
 export default function chat(state = initialState, action) {
@@ -13,8 +14,19 @@ export default function chat(state = initialState, action) {
     });
     case 'GET_CHANNELS':
     return Object.assign({}, state, {
-      channels: action.value,
+      channels: action.channels,
     });
+
+    case 'FETCH_CHANNELS':
+    return Object.assign({}, state, {
+      isFetching: true
+    });
+    case 'FETCH_CHANNELS_SUCCESS':
+    return Object.assign({}, state, {
+      isFetching: false,
+      channels: action.channels
+    });
+
     default:
     return state;
   }

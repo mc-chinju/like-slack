@@ -18,7 +18,7 @@ class ChatMain extends React.Component {
   componentDidMount() {
     // ビューのレンダリングが終わったら呼び出されるコールバックでチャンネルにケーブルを接続する
     this.subscriptChannel();
-    this.props.fetchFeeds();
+    this.props.fetchChannels()
   }
 
   subscriptChannel() {
