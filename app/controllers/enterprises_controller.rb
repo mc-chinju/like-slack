@@ -1,5 +1,5 @@
 class EnterprisesController < ApplicationController
-  before_action :set_enterprise, only: [:show, :edit, :update, :destroy]
+  before_action :set_enterprise, only: [:show, :destroy]
 
   def index
     @enterprises = current_user.enterprises
@@ -12,9 +12,9 @@ class EnterprisesController < ApplicationController
     # TODO: model にロジックを移したい
     ActiveRecord::Base.transaction do
       @enterprise = Enterprise.create!(enterprise_params)
-      account = current_user.accounts.create!(enterprise: @enterprise, role: Account.roles["owner"])
-      # TODO: general チャンネルの作成
-      session[:account_id] = account.id
+      owner_account = current_user.accounts.create!(enterprise: @enterprise, role: Account.roles["owner"])
+      general_channel = owner_account.channels.create!(name: "general", enterprise: @enterprise, owner_id: owner_account.id)
+      session[:account_id] = owner_account.id
     end
     render :show
   end
