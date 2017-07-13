@@ -1,12 +1,11 @@
-import { createStore, combineReducers, compose } from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
 import fromReducer from '../reducers/chat';
+import thunkMiddleware from 'redux-thunk'
 
 /* Storeの実装 */
 
-const initialState = {
-  value: [],
-};
-
 export default function configureStore(){
-  return createStore(fromReducer, initialState);
+  return createStore(
+    fromReducer,applyMiddleware(thunkMiddleware)
+  )
 }
