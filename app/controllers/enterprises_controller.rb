@@ -14,7 +14,6 @@ class EnterprisesController < ApplicationController
       @enterprise = Enterprise.create!(enterprise_params)
       account = current_user.accounts.create!(enterprise: @enterprise, role: Account.roles["owner"])
       # TODO: general チャンネルの作成
-      binding.pry
       session[:account_id] = account.id
     end
     render :show
