@@ -3,6 +3,7 @@
   "private": true,
   "dependencies": {
     "autoprefixer": "^7.1.1",
+    "axios": "^0.16.2",
     "babel-core": "^6.25.0",
     "babel-loader": "7.x",
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
@@ -17,6 +18,7 @@
     "extract-text-webpack-plugin": "^2.1.2",
     "file-loader": "^0.11.2",
     "glob": "^7.1.2",
+    "isomorphic-fetch": "^2.2.1",
     "js-yaml": "^3.8.4",
     "material-ui": "^0.18.5",
     "node-sass": "^4.5.3",
@@ -32,6 +34,7 @@
     "react-tap-event-plugin": "^2.0.1",
     "redux": "^3.7.1",
     "redux-devtools": "^3.4.0",
+    "redux-thunk": "^2.2.0",
     "resolve-url-loader": "^2.1.0",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.18.2",
