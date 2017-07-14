@@ -27,7 +27,7 @@ describe "Enterprises API", type: :request do
           @params = { enterprise: @attributes }
         }
 
-        fit "成功する" do
+        it "成功する" do
           expect(subject).to eq 200
           parsed_body = response.parsed_body
           aggregate_failures do
