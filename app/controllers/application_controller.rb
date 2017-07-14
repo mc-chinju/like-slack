@@ -7,11 +7,15 @@ class ApplicationController < ActionController::Base
   helper_method :current_enterprise, :current_account, :current_channel
 
   def current_account
-    Account.eager_load(:enterprise).find_by(id: session[:account_id])
+    current_user.accounts.find_by(id: session[:account_id])
   end
 
   def current_enterprise
     current_account.enterprise
+  end
+
+  def current_channel
+    current_enterprise.channels.find_by(id: session[:channel_id])
   end
 
   def authenticate_user!
