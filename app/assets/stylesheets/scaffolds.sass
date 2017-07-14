@@ -63,17 +63,19 @@ button
     list-style: square
 label
   display: block
-.root-container
+.contents
   height: 100%
   .header-container
     background-color: #29314c
     height: 70px
     line-height: 70px
+    text-align: center
     h1
       color: #fff
       margin: 0
-      text-align: center
-  .container
+      display: inline
+      vertical-align: middle
+  .root-container
     height: calc(100% - 70px)
     .main-container
       position: relative
@@ -88,9 +90,12 @@ label
         ul
           list-style: none
           padding: 0 10px
-          font-size: 1.1rem
+          font-size: 2rem
+          margin-top: 20px
           li
             margin: 5px 0
+            a
+              color: #fff
       .chat-area
         position: relative
         float: left
@@ -105,13 +110,13 @@ label
           overflow-y: auto
           ul
             list-style: none
-
             padding: 0
             display: block
             li
               min-height: 30px
               line-height: 30px
               border-bottom: 1px solid #AAAAAA
+              text-decoration: none
         .form-container
           position: absolute
           bottom: 0

@@ -7,7 +7,7 @@ import fetch from 'isomorphic-fetch'
 
 // Action名の定義
 const SEND = 'SEND';
-const GET_CHANNELS = 'SET_CHANNELS';
+const SET_CHANNELS = 'SET_CHANNELS';
 export const FETCH_CHANNELS = 'FETCH_CHANNELS'
 export const FETCH_CHANNELS_SUCCESS = 'FETCH_CHANNELS_SUCCESS'
 
@@ -31,14 +31,6 @@ export function setChannels(channels) {
   };
 }
 
-function getChannels(store) {
-   return dispatch => {
-       dispatch(fetchChannels());
-       return axios.get('http://127.0.0.1:3000/channels.json')
-         .then(data => dispatch(receiveChannels(data.channels)));
-   };
-}
-
 function requestChannels() {
   return {
     type: FETCH_CHANNELS
@@ -60,20 +52,4 @@ export function fetchChannels() {
         console.log(response)
       })
   }
-}
-
-function getCannelList2(){
-  axios.get('http://127.0.0.1:3000/channels.json').then((response) => {
-      dispatch(receiveChannels(response.data))
-    }).catch((response) => {
-      console.log(response)
-    })
-}
-
-function getCannelList(){
-  axios.get('http://127.0.0.1:3000/channels.json').then((response) => {
-      setChannels(response.data)
-    }).catch((response) => {
-      console.log(response)
-    })
 }
