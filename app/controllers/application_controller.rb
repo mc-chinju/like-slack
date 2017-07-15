@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :doorkeeper_authorize!, if: :need_oauth_authenticate
   before_action :configure_permitted_parameters, if: :devise_controller?
-  helper_method :current_enterprise, :current_account
+  helper_method :current_enterprise, :current_account, :current_channel
 
   def current_account
     Account.eager_load(:enterprise).find_by(id: session[:account_id])
