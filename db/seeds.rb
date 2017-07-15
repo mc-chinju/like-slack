@@ -1,30 +1,29 @@
-#TODO: リリース前には削除
+# TODO: リリース前には削除
+# development のテスト用データ
 
-User.delete_all
-Account.delete_all
-Enterprise.delete_all
-Channel.delete_all
-
-owner = User.create!(login:'owhoge',email:'owner@hoge.com', password:'hugahuga')
-
-user = User.create!(login:'hoge',email:'hogehoge@hoge.com',password:'hugahuga')
-
-enterprise = Enterprise.create!(name:'nigekiri',account_name:'逃げ切り')
-
-account1 = Account.create!(user_id:owner.id,enterprise_id:enterprise.id)
-
-Account.create!(user_id:user.id,enterprise_id:enterprise.id)
-
-channel1 = Channel.create!(
-  enterprise_id:enterprise.id,
-  owner_id:owner.id,
-  name:'test_channel',
-  user_id:user.id
+# user の作成
+owner = User.create!(
+  login: 'owner',
+  email: 'owner@nigekiri.com',
+  password: 'owner12345'
+)
+general = User.create!(
+  login: 'general',
+  email: 'general@nigekiri.com',
+  password: 'general12345'
 )
 
-Message.create!(
-  :body => 'Hello!',
-  :channel_id => channel1.id,
-  :account_id => account1.id,
-  :user_id => owner.id
+# チームの作成, メンバーの追加
+enterprise = owner.enterprises.create!(name: 'nigekiri', account_name: '逃げ切り')
+owner_account   = enterprise.accounts.find_by(enterprise: enterprise)
+general_account = enterprise.accounts.create!(user: general)
+
+# チャンネルとメッセージの追加
+channel = enterprise.channels.create!(
+  name: "てすとちゃんねる",
+  owner_id: owner_account.id
+)
+message = channel.messages.create!(
+  body: "Hello!",
+  account: owner_account
 )

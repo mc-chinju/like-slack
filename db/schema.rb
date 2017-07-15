@@ -47,7 +47,6 @@ ActiveRecord::Schema.define(version: 20170714051101) do
     t.string "body", null: false
     t.integer "channel_id", null: false
     t.integer "account_id", null: false
-    t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
