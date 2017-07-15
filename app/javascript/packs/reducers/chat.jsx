@@ -12,7 +12,7 @@ export default function chat(state = initialState, action) {
     return Object.assign({}, state, {
       value: state.value.concat(action.value),
     });
-    case 'GET_CHANNELS':
+    case 'SET_CHANNELS':
     return Object.assign({}, state, {
       channels: action.channels,
     });
@@ -26,7 +26,6 @@ export default function chat(state = initialState, action) {
       isFetching: false,
       channels: action.channels
     });
-
     default:
     return state;
   }

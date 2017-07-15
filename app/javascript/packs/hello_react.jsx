@@ -24,7 +24,7 @@ class ChatMain extends React.Component {
   subscriptChannel() {
     App.chat = App.cable.subscriptions.create(
       // チャンネルの種類とスライドのIDを指定。これがサーバー側にparamsとしてセットされる。
-      { channel: "ChatChannel", chat_id: 1 },
+      { channel: "ChatChannel", chat_id: this.props.channels.id },
       {
         // ActionCableが接続されたときのコールバック
         connected() {
@@ -52,7 +52,7 @@ class ChatMain extends React.Component {
     return (
       <div className="main-container">
         <div className="side-menu">
-          <ChannelDisplay channels={this.props.channels} />
+          <ChannelDisplay channels={this.props.channels} channelClick={this.props.setChannels(this.props.channels)}/>
         </div>
         <div className="chat-area">
           <div className="chat-container">
@@ -111,7 +111,7 @@ class ChannelDisplay extends React.Component {
     return (
       <ul>
         {this.props.channels.map((channel) =>
-          <ChannelLine textVal={channel.name} key={channel.id} />
+          <ChannelLine textVal={channel.name} key={channel.id} channelClick={this.props.channelClick}/>
         )}
       </ul>
     );
@@ -119,7 +119,7 @@ class ChannelDisplay extends React.Component {
 }
 // チャンネル表示
 const ChannelLine = props => (
-  <li key={props.key}>{props.textVal}</li>
+  <li key={props.key}><a href="" onClick={props.channelClick}>{props.textVal}</a></li>
 )
 
 document.addEventListener('DOMContentLoaded', () => {
