@@ -8,6 +8,6 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
   .contents
-    == render 'layouts/header'
+    = render 'layouts/header'
     = yield
-    = javascript_pack_tag 'hello_react'
+    = javascript_pack_tag 'main'
