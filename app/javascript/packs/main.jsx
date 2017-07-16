@@ -111,7 +111,7 @@ class ChannelDisplay extends React.Component {
     return (
       <ul>
         {this.props.channels.map((channel) =>
-          <ChannelLine textVal={channel.name} key={channel.id} channelClick={this.props.channelClick}/>
+          <ChannelLine cname={channel.name} key={channel.id} channelClick={this.props.channelClick}/>
         )}
       </ul>
     );
@@ -119,7 +119,7 @@ class ChannelDisplay extends React.Component {
 }
 // チャンネル表示
 const ChannelLine = props => (
-  <li key={props.key}><a href="" onClick={props.channelClick}>{props.textVal}</a></li>
+  <li key={props.key}>{props.cname}</li>
 )
 
 document.addEventListener('DOMContentLoaded', () => {
