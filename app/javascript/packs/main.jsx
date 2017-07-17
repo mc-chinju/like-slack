@@ -173,7 +173,7 @@ class ChannelDisplay extends React.Component {
 }
 // チャンネル表示
 const ChannelLine = props => (
-  <li key={props.key}>{props.textVal}</li>
+  <li key={props.key}>{props.cname}</li>
 )
 
 document.addEventListener('DOMContentLoaded', () => {
