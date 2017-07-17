@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery with: :exception, unless: :need_oauth_authenticate
+  # protect_from_forgery with: :exception, unless: :need_oauth_authenticate
 
   before_action :authenticate_user!
   before_action :doorkeeper_authorize!, if: :need_oauth_authenticate
