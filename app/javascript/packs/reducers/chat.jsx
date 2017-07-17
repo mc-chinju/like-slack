@@ -14,11 +14,6 @@ export default function chat(state = initialState, action) {
     return Object.assign({}, state, {
       value: state.value.concat(action.value),
     });
-    case 'SET_CHANNELS':
-    return Object.assign({}, state, {
-      channels: action.channels,
-    });
-
     case 'FETCH_CHANNELS':
     return Object.assign({}, state, {
       isFetching: true
@@ -44,10 +39,6 @@ export default function chat(state = initialState, action) {
     case 'ADD_CHANNEL_SUCCESS':
     return Object.assign({}, state, {
       isFetching: false,
-    });
-    case 'INPUT_CHANNEL':
-    return Object.assign({}, state, {
-      channelName: actions.channelName,
     });
     default:
     return state;

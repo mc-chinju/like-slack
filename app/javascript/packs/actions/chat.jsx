@@ -28,15 +28,6 @@ export function sendMessage(value) {
     value,
   };
 }
-
-export function setChannels(channels) {
-  // Action
-  return {
-    type: SET_CHANNELS,
-    channels,
-  };
-}
-
 function requestChannels() {
   return {
     type: FETCH_CHANNELS
@@ -95,10 +86,4 @@ export function postChannel(channelTitle) {
         console.log(response)
       })
   }
-}
-function inputChannel(text) {
-  return {
-    type: INPUT_CHANNEL,
-    text
-  };
 }
