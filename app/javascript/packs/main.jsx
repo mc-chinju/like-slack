@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import { createStore } from 'redux';
 import { Provider, connect } from 'react-redux';
+import Modal from 'react-modal';
 
 import { bindActionCreators } from 'redux';
 
@@ -12,8 +13,25 @@ import chat from './reducers/chat';
 
 const store = configureStore();
 
+const customStyles = {
+  content : {
+    top                   : '50%',
+    left                  : '50%',
+    right                 : 'auto',
+    bottom                : 'auto',
+    marginRight           : '-50%',
+    transform             : 'translate(-50%, -50%)'
+  }
+};
+
 // MainView
 class ChatMain extends React.Component {
+  constructor() {
+    super();
+    this.openModal = this.openModal.bind(this);
+    this.afterOpenModal = this.afterOpenModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+  }
   // ActionCable
   componentDidMount() {
     // ビューのレンダリングが終わったら呼び出されるコールバックでチャンネルにケーブルを接続する
@@ -48,10 +66,49 @@ class ChatMain extends React.Component {
     App.chat.received = App.chat.received.bind(this);
   }
 
+
+  openModal() {
+    this.props.openChannelModal()
+  }
+  afterOpenModal() {
+    // references are now sync'd and can be accessed.
+  }
+  closeModal() {
+    this.props.closeChannelModal()
+    this.props.fetchChannels()
+  }
+  addChannel() {
+
+  }
+  channelCreate(e) {
+    e.preventDefault();
+    this.props.postChannel(this.channelInput.value);
+    this.channelInput.value = '';
+    this.closeModal();
+    return;
+  }
+
   render() {
     return (
       <div className="main-container">
+        <Modal
+          isOpen={this.props.modalIsOpen}
+          onAfterOpen={this.afterOpenModal}
+          onRequestClose={this.closeModal}
+          style={customStyles}
+          contentLabel="Example Modal"
+          >
+
+          <h2 ref={subtitle => this.subtitle = subtitle}>チャンネル作成</h2>
+          <form>
+            <input  type="text" ref={(ref) => (this.channelInput = ref)} defaultValue=""/>
+            <button onClick={(event) => this.channelCreate(event)}>Send</button>
+          </form>
+          <button onClick={this.closeModal}>閉じる</button>
+        </Modal>
+
         <div className="side-menu">
+          <button onClick={this.openModal}>＋ チャンネル作成</button>
           <ChannelDisplay channels={this.props.channels} channelClick={this.props.setChannels(this.props.channels)}/>
         </div>
         <div className="chat-area">
@@ -137,6 +194,9 @@ function mapStateToProps(state) {
     // propsを通して取得する際に使う名前: Storeのstateの値
     value: state.value,
     channels: state.channels,
+    modalIsOpen: state.modalIsOpen,
+    isFetching: state.isFetching,
+    channelName: state.channelName
   };
 }
 function mapDispatchToProps(dispatch) {

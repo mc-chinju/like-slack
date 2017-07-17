@@ -4,6 +4,8 @@ const initialState = {
   value: [],
   channels: [],
   isFetching: false,
+  modalIsOpen: false,
+  channelName: ''
 };
 
 export default function chat(state = initialState, action) {
@@ -25,6 +27,27 @@ export default function chat(state = initialState, action) {
     return Object.assign({}, state, {
       isFetching: false,
       channels: action.channels
+    });
+    case 'OPEN_MODAL':
+    return Object.assign({}, state, {
+      modalIsOpen: true
+    });
+    case 'CLOSE_MODAL':
+    return Object.assign({}, state, {
+      modalIsOpen: false
+    });
+
+    case 'ADD_CHANNEL':
+    return Object.assign({}, state, {
+      isFetching: true
+    });
+    case 'ADD_CHANNEL_SUCCESS':
+    return Object.assign({}, state, {
+      isFetching: false,
+    });
+    case 'INPUT_CHANNEL':
+    return Object.assign({}, state, {
+      channelName: actions.channelName,
     });
     default:
     return state;
