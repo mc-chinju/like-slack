@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: accounts
+#
+#  id            :integer          not null, primary key
+#  user_id       :integer          not null
+#  enterprise_id :integer          not null
+#  role          :integer
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#
+
 FactoryGirl.define do
   factory :account do
     trait :owner do
