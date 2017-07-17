@@ -74,13 +74,13 @@ class ChatMain extends React.Component {
     // references are now sync'd and can be accessed.
   }
   closeModal() {
-    this.props.closeChannelModal()
-    this.props.fetchChannels()
+    this.props.closeChannelModal();
   }
   channelCreate(e) {
     e.preventDefault();
     this.props.postChannel(this.channelInput.value);
     this.channelInput.value = '';
+    this.props.fetchChannels();
     this.closeModal();
     return;
   }
@@ -173,7 +173,7 @@ class ChannelDisplay extends React.Component {
 }
 // チャンネル表示
 const ChannelLine = props => (
-  <li key={props.key}>{props.cname}</li>
+  <li key={props.key}>{props.textVal}</li>
 )
 
 document.addEventListener('DOMContentLoaded', () => {
