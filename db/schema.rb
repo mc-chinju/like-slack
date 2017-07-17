@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20170714051101) do
     t.integer "owner_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name", "enterprise_id"], name: "index_channels_on_name_and_enterprise_id", unique: true
   end
 
   create_table "enterprises", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
