@@ -80,7 +80,6 @@ class ChatMain extends React.Component {
     e.preventDefault();
     this.props.postChannel(this.channelInput.value);
     this.channelInput.value = '';
-    this.props.fetchChannels();
     this.closeModal();
     return;
   }

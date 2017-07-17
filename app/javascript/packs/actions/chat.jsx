@@ -81,6 +81,7 @@ export function postChannel(channelTitle) {
       name: channelTitle
     },{withCredentials:true}
     ).then((response) => {
+        dispatch(fetchChannels())
         dispatch(addNewChannelSuccess())
       }).catch((response) => {
         console.log(response)
