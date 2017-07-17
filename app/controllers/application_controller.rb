@@ -7,11 +7,12 @@ class ApplicationController < ActionController::Base
   helper_method :current_enterprise, :current_account, :current_channel
 
   def current_account
+    session[:account_id] ||= current_user&.accounts&.first&.id
     current_user.accounts.find_by(id: session[:account_id])
   end
 
   def current_enterprise
-    current_account.enterprise
+    current_account&.enterprise
   end
 
   def current_channel

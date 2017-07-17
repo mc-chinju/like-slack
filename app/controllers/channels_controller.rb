@@ -14,7 +14,10 @@ class ChannelsController < ApplicationController
   end
 
   def create
-    @channel = current_enterprise.channels.create!(channel_params.merge(owner_id: current_account.id))
+    ActiveRecord::Base.transaction do
+      @channel = current_enterprise.channels.create!(channel_params.merge(owner_id: current_account.id))
+      current_account.channel_members.create!(channel: @channel)
+    end
     render :show
   end
 
