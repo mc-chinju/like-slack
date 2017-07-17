@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
   use_doorkeeper
-  resources :messages
-  resources :channels
   root to: "main#main"
+  resources :messages
+  resources :channels do
+    put "/switch", to: "channels#switch"
+    patch "/switch", to: "channels#switch"
+  end
   resources :enterprises, only: [:index, :show, :create, :destroy]
   devise_for :users, only: [:sign_in, :sign_out, :session], controllers: {
     registrations: :'users/registrations',
