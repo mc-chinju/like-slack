@@ -29,9 +29,10 @@ ActiveRecord::Schema.define(version: 20170714051101) do
   end
 
   create_table "channels", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "name"
     t.integer "enterprise_id", null: false
     t.integer "owner_id", null: false
+    t.string "name"
+    t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -47,6 +48,7 @@ ActiveRecord::Schema.define(version: 20170714051101) do
     t.string "body", null: false
     t.integer "channel_id", null: false
     t.integer "account_id", null: false
+    t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
