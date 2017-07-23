@@ -43,7 +43,7 @@ function receiveChannels(json) {
 export function fetchChannels() {
   return dispatch => {
     dispatch(requestChannels())
-    return axios.get('http://localhost:3000/channels.json').then((response) => {
+    return axios.get('/channels.json').then((response) => {
         dispatch(receiveChannels(response.data))
       }).catch((response) => {
         console.log(response)
