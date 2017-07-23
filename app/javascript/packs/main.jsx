@@ -42,7 +42,7 @@ class ChatMain extends React.Component {
     this.subscriptChannel();
     this.props.fetchChannels()
     this.props.fetchMessages()
-    this.props.postSwitchChannel("1")
+    //this.props.postSwitchChannel("1")
   }
 
   subscriptChannel() {
@@ -110,7 +110,7 @@ class ChatMain extends React.Component {
 
         <div className="side-menu">
           <button onClick={this.openModal}>＋ チャンネル作成</button>
-          <ChannelDisplay channels={this.props.channels} />
+          <ChannelDisplay channels={this.props.channels} postSwitchChannel={this.props.postSwitchChannel}/>
         </div>
         <div className="chat-area">
           <div className="chat-container">

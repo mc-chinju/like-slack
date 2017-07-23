@@ -169,6 +169,7 @@ export function postSwitchChannel(channel_id) {
     },{withCredentials:true}
     ).then((response) => {
         dispatch(switchChannelSuccess())
+        dispatch(fetchMessages())
       }).catch((response) => {
         console.log(response)
       })
