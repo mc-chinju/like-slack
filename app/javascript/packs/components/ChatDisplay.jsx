@@ -7,15 +7,15 @@ class ChatDisplay extends React.Component {
     var key = 0;
     return (
       <ul>
-        {this.props.data.map((textVal) =>
-          <ChatLine textVal={textVal} key={key++} />
+        {this.props.messages.map((message) =>
+          <ChatLine messageBody={message.body} key={message.id} />
         )}
       </ul>
     );
   }
 }
 ChatDisplay.propTypes = {
-  data: React.PropTypes.array,
+  messages: React.PropTypes.array,
 };
 
 export default ChatDisplay

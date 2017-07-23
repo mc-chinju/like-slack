@@ -27,3 +27,8 @@ message = channel.messages.create!(
   body: "Hello!",
   account: owner_account
 )
+
+message = ChannelMember.create!(
+  account_id: 1,
+  channel_id: 1
+)

@@ -3,7 +3,7 @@ import React from 'react'
 class FormInput extends React.Component {
   send(e) {
     e.preventDefault();
-    App.chat.speak(this.myInput.value);
+    this.props.postMessage(this.myInput.value);
     this.myInput.value = '';
     return;
   }

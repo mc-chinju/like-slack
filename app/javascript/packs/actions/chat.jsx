@@ -16,16 +16,25 @@ export const ADD_CHANNEL = 'ADD_CHANNEL'
 export const ADD_CHANNEL_SUCCESS = 'ADD_CHANNEL_SUCCESS'
 export const INPUT_CHANNEL = 'INPUT_CHANNEL'
 
+export const FETCH_MESSAGES = 'FETCH_MESSAGES'
+export const FETCH_MESSAGES_SUCCESS = 'FETCH_MESSAGES_SUCCESS'
+
+export const ADD_MESSAGE = 'ADD_MESSAGE'
+export const ADD_MESSAGE_SUCCESS = 'ADD_MESSAGE_SUCCESS'
+
+export const SWITCH_CHANNEL = 'SWITCH_CHANNEL'
+export const SWITCH_CHANNEL_SUCCESS = 'SWITCH_CHANNEL_SUCCESS'
+
 
 const feedURL = '/channels.json';
 
 // Action Creators
 
-export function sendMessage(value) {
+export function sendMessage(messages) {
   // Action
   return {
     type: SEND,
-    value,
+    messages,
   };
 }
 function requestChannels() {
@@ -83,6 +92,83 @@ export function postChannel(channelTitle) {
     ).then((response) => {
         dispatch(fetchChannels())
         dispatch(addNewChannelSuccess())
+      }).catch((response) => {
+        console.log(response)
+      })
+  }
+}
+// メッセージ取得
+export function fetchMessages() {
+  return dispatch => {
+    dispatch(requestMessages())
+    return axios.get('/messages.json').then((response) => {
+        dispatch(receiveMessages(response.data))
+      }).catch((response) => {
+        console.log(response)
+      })
+  }
+}
+
+function requestMessages() {
+  return {
+    type: FETCH_MESSAGES
+  }
+}
+
+function receiveMessages(json) {
+  return {
+    type: FETCH_MESSAGES_SUCCESS,
+    messages: json
+  }
+}
+
+// メッセージ送信
+function addNewMessage() {
+  return {
+    type: ADD_MESSAGE,
+  };
+}
+function addNewMessageSuccess() {
+  return {
+    type: ADD_MESSAGE_SUCCESS,
+  };
+}
+export function postMessage(messageBody) {
+  return dispatch => {
+    dispatch(addNewMessage())
+    return axios.post('/messages.json',
+    {
+      body: messageBody
+    },{withCredentials:true}
+    ).then((response) => {
+        dispatch(fetchMessages())
+        dispatch(addNewMessageSuccess())
+      }).catch((response) => {
+        console.log(response)
+      })
+  }
+}
+
+// channel switch
+function switchChannel() {
+  return {
+    type: SWITCH_CHANNEL,
+  };
+}
+function switchChannelSuccess() {
+  return {
+    type: SWITCH_CHANNEL_SUCCESS,
+  };
+}
+export function postSwitchChannel(channel_id) {
+  return dispatch => {
+    dispatch(switchChannel())
+    return axios.put('/channels/'+channel_id+'/switch.json',
+    {
+      channel_id: channel_id
+    },{withCredentials:true}
+    ).then((response) => {
+        dispatch(switchChannelSuccess())
       }).catch((response) => {
         console.log(response)
       })

@@ -41,6 +41,8 @@ class ChatMain extends React.Component {
     // ビューのレンダリングが終わったら呼び出されるコールバックでチャンネルにケーブルを接続する
     this.subscriptChannel();
     this.props.fetchChannels()
+    this.props.fetchMessages()
+    this.props.postSwitchChannel("1")
   }
 
   subscriptChannel() {
@@ -112,10 +114,10 @@ class ChatMain extends React.Component {
         </div>
         <div className="chat-area">
           <div className="chat-container">
-            <ChatDisplay data={this.props.value} />
+            <ChatDisplay messages={this.props.messages} />
           </div>
           <div className="form-container">
-            <FormInput />
+            <FormInput postMessage={this.props.postMessage}/>
           </div>
         </div>
       </div>
@@ -136,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
 function mapStateToProps(state) {
   return {
     // propsを通して取得する際に使う名前: Storeのstateの値
-    value: state.value,
+    messages: state.messages,
     channels: state.channels,
     modalIsOpen: state.modalIsOpen,
     isFetching: state.isFetching,
