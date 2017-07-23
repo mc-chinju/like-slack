@@ -42,7 +42,7 @@ class ChatMain extends React.Component {
     this.subscriptChannel();
     this.props.fetchChannels()
     this.props.fetchMessages()
-    //this.props.postSwitchChannel("1")
+    this.props.postSwitchChannel("1")
   }
 
   subscriptChannel() {
