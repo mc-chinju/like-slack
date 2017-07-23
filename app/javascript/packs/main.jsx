@@ -10,6 +10,10 @@ import { bindActionCreators } from 'redux';
 import * as Actions from './actions/chat';
 import configureStore from './store/configureStore';
 import chat from './reducers/chat';
+// Components
+import FormInput from './components/FormInput';
+import ChatDisplay from './components/ChatDisplay';
+import ChannelDisplay from './components/ChannelDisplay';
 
 const store = configureStore();
 
@@ -66,7 +70,6 @@ class ChatMain extends React.Component {
     App.chat.received = App.chat.received.bind(this);
   }
 
-
   openModal() {
     this.props.openChannelModal()
   }
@@ -119,61 +122,6 @@ class ChatMain extends React.Component {
     );
   }
 }
-// 入力フォーム
-class FormInput extends React.Component {
-  send(e) {
-    e.preventDefault();
-    App.chat.speak(this.myInput.value);
-    this.myInput.value = '';
-    return;
-  }
-  render() {
-    return (
-      <form>
-        <input type="text" ref={(ref) => (this.myInput = ref)} defaultValue="" />
-        <button onClick={(event) => this.send(event)}>Send</button>
-      </form>
-    );
-  }
-}
-// チャット表示部分
-class ChatDisplay extends React.Component {
-  render() {
-    var key = 0;
-    return (
-      <ul>
-        {this.props.data.map((textVal) =>
-          <ChatLine textVal={textVal} key={key++} />
-        )}
-      </ul>
-    );
-  }
-}
-ChatDisplay.propTypes = {
-  data: React.PropTypes.array,
-};
-
-// チャット表示
-const ChatLine = props => (
-  <li key={props.key}>{props.textVal}</li>
-)
-
-// チャンネル一覧
-class ChannelDisplay extends React.Component {
-  render() {
-    return (
-      <ul>
-        {this.props.channels.map((channel) =>
-          <ChannelLine textVal={channel.name} key={channel.id} />
-        )}
-      </ul>
-    );
-  }
-}
-// チャンネル表示
-const ChannelLine = props => (
-  <li key={props.key}>{props.textVal}</li>
-)
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
