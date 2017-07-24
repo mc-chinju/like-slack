@@ -1,7 +1,7 @@
 import { SEND } from '../actions/chat';
 
 const initialState = {
-  value: [],
+  messages: [],
   channels: [],
   isFetching: false,
   modalIsOpen: false,
@@ -12,7 +12,7 @@ export default function chat(state = initialState, action) {
   switch (action.type) {
     case 'SEND':
     return Object.assign({}, state, {
-      value: state.value.concat(action.value),
+      messages: state.messages.concat(action.messages),
     });
     case 'FETCH_CHANNELS':
     return Object.assign({}, state, {
@@ -40,6 +40,35 @@ export default function chat(state = initialState, action) {
     return Object.assign({}, state, {
       isFetching: false,
     });
+
+    case 'FETCH_MESSAGES':
+    return Object.assign({}, state, {
+      isFetching: true
+    });
+    case 'FETCH_MESSAGES_SUCCESS':
+    return Object.assign({}, state, {
+      isFetching: false,
+      messages: action.messages
+    });
+
+    case 'ADD_MESSAGE':
+    return Object.assign({}, state, {
+      isFetching: true
+    });
+    case 'ADD_MESSAGE_SUCCESS':
+    return Object.assign({}, state, {
+      isFetching: false,
+    });
+
+    case 'SWITCH_CHANNEL':
+    return Object.assign({}, state, {
+      isFetching: true
+    });
+    case 'SWITCH_CHANNEL_SUCCESS':
+    return Object.assign({}, state, {
+      isFetching: false,
+    });
+
     default:
     return state;
   }

@@ -2,7 +2,7 @@ class MessagesController < ApplicationController
   before_action :set_message, only: [:show, :update, :destroy]
 
   def index
-    @messages = current_account.messages
+    @messages = current_channel.messages
   end
 
   def show

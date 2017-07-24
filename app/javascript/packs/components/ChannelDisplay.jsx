@@ -6,7 +6,7 @@ class ChannelDisplay extends React.Component {
     return (
       <ul>
         {this.props.channels.map((channel) =>
-          <ChannelLine textVal={channel.name} key={channel.id} />
+          <ChannelLine textVal={channel.name} key={channel.id} channelId={channel.id} postSwitchChannel={this.props.postSwitchChannel}/>
         )}
       </ul>
     );

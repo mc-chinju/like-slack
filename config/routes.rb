@@ -3,8 +3,10 @@ Rails.application.routes.draw do
   root to: "main#main"
   resources :messages
   resources :channels do
-    put "/switch", to: "channels#switch"
-    patch "/switch", to: "channels#switch"
+    member do
+      put "/switch", to: "channels#switch"
+      patch "/switch", to: "channels#switch"
+    end
   end
   resources :enterprises, only: [:index, :show, :create, :destroy]
   devise_for :users, only: [:sign_in, :sign_out, :session], controllers: {
