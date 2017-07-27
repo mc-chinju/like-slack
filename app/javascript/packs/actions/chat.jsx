@@ -1,8 +1,6 @@
 import axios from 'axios'
 import fetch from 'isomorphic-fetch'
 
-
-
 /* Actionsの実装 */
 
 // Action名の定義
@@ -24,7 +22,6 @@ export const ADD_MESSAGE_SUCCESS = 'ADD_MESSAGE_SUCCESS'
 
 export const SWITCH_CHANNEL = 'SWITCH_CHANNEL'
 export const SWITCH_CHANNEL_SUCCESS = 'SWITCH_CHANNEL_SUCCESS'
-
 
 const feedURL = '/channels.json';
 
