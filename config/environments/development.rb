@@ -57,4 +57,7 @@ Rails.application.configure do
 
   # mailer setting
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+  # redis
+  config.session_store :redis_store, servers: 'redis://localhost:6379/0', expire_in: 1.day
 end
