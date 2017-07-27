@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
 
   def current_account
     session[:account_id] ||= current_user&.accounts&.first&.id
-    current_user.accounts.find_by(id: session[:account_id])
+    current_user&.accounts&.find_by(id: session[:account_id])
   end
 
   def current_enterprise

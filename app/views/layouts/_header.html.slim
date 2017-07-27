@@ -1,4 +1,4 @@
-nav.navbar.navbar-default
+nav.navbar.navbar-default.navbar-custom
   .container-fluid
     /! Brand and toggle get grouped for better mobile display
     .navbar-header
@@ -7,7 +7,8 @@ nav.navbar.navbar-default
         span.icon-bar
         span.icon-bar
         span.icon-bar
-      a.navbar-brand href=root_path  Like Slack
+      a.navbar-brand href=root_path
+        = current_enterprise&.name || "LIKE SLACK"
     #bs-example-navbar-collapse-1.collapse.navbar-collapse
       ul.nav.navbar-nav.navbar-right
         - unless current_user
