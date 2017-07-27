@@ -11,6 +11,7 @@ gem 'mysql2', '~> 0.4.4'
 gem 'puma', '~> 3.7'
 gem 'rails', '~> 5.1.2'
 gem 'sass-rails', '~> 5.0'
+gem 'jquery-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
@@ -23,8 +24,7 @@ gem 'redis', '~> 3.0'
 gem 'webpacker', '~> 2.0'
 gem 'doorkeeper'
 gem 'slim-rails'
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bootstrap-sass', '~> 3.3.6'
 
 group :development do
   gem 'capistrano', '~> 3.8.2'
@@ -37,6 +37,8 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'foreman'
+  gem 'web-console', '>= 3.3.0'
+  gem 'annotate'
   # gem 'rails-erd'
 end
 
@@ -46,7 +48,6 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'selenium-webdriver'
-  gem 'web-console', '>= 3.3.0'
 end
 
 group :test do
@@ -55,10 +56,6 @@ group :test do
   gem 'faker', '~> 1.7.3'
   gem 'rspec-rails', '~> 3.6'
 end
-
-# Device
-#gem "devise"
-#gem "omniauth-twitter"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
