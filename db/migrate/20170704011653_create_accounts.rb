@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateAccounts < ActiveRecord::Migration[5.1]
   def change
     create_table :accounts do |t|
@@ -6,7 +8,7 @@ class CreateAccounts < ActiveRecord::Migration[5.1]
       t.integer :role
 
       t.timestamps
-      t.index [:user_id, :enterprise_id], unique: true, name: "index_accounts_on_user_and_enterprise"
+      t.index %i[user_id enterprise_id], unique: true, name: "index_accounts_on_user_and_enterprise"
     end
   end
 end

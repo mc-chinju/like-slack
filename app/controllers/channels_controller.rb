@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class ChannelsController < ApplicationController
-  before_action :set_channel, only: [:switch, :destroy]
+  before_action :set_channel, only: %i[switch destroy]
 
   def index
     @channels = current_account.channels
@@ -31,6 +33,7 @@ class ChannelsController < ApplicationController
   end
 
   private
+
     def set_channel
       @channel = current_account.channels.find(params[:id])
     end

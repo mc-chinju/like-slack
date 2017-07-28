@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Oauth
   def prepare_oauth
     enterprise = create :enterprise
@@ -29,6 +31,8 @@ module Oauth
     @account.try :enterprise
   end
 
+  # switch は性質上分岐を多くしたい
+  # rubocop:disable Style/CyclomaticComplexity Metrics/AbcSize
   def switch(system_role)
     account =
       case system_role
@@ -43,7 +47,7 @@ module Oauth
       when :other
         Account.where.not(enterprise: current_enterprise).first || create(:owner_account_with_relations)
       else
-        raise 'invalid system role'
+        raise "invalid system role"
       end
     login account.user
   end
@@ -51,14 +55,14 @@ module Oauth
   def default_header
     if @access_token.present?
       {
-        'Authorization' => "Bearer #{@access_token.token}",
-        'Accept' => 'application/json',
-        'Content-Type' => 'application/json'
+        "Authorization" => "Bearer #{@access_token.token}",
+        "Accept" => "application/json",
+        "Content-Type" => "application/json"
       }
     else
       {
-        'Accept' => 'application/json',
-        'Content-Type' => 'application/json'
+        "Accept" => "application/json",
+        "Content-Type" => "application/json"
       }
     end
   end
@@ -66,14 +70,14 @@ module Oauth
   def upload_header
     if @access_token.present?
       {
-        'Authorization' => "Bearer #{@access_token.token}",
-        'Accept' => 'application/json',
-        'Content-Type' => 'multipart/form-data'
+        "Authorization" => "Bearer #{@access_token.token}",
+        "Accept" => "application/json",
+        "Content-Type" => "multipart/form-data"
       }
     else
       {
-        'Accept' => 'application/json',
-        'Content-Type' => 'multipart/form-data'
+        "Accept" => "application/json",
+        "Content-Type" => "multipart/form-data"
       }
     end
   end

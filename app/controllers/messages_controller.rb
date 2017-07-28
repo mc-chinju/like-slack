@@ -1,12 +1,13 @@
+# frozen_string_literal: true
+
 class MessagesController < ApplicationController
-  before_action :set_message, only: [:show, :update, :destroy]
+  before_action :set_message, only: %i[show update destroy]
 
   def index
     @messages = current_channel.messages
   end
 
-  def show
-  end
+  def show; end
 
   def create
     @message = current_channel.messages.create!(message_params.merge(account: current_account))
@@ -24,6 +25,7 @@ class MessagesController < ApplicationController
   end
 
   private
+
     def set_message
       @message = current_account.messages.find(params[:id])
     end
