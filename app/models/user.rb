@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: users
@@ -33,5 +35,5 @@ class User < ApplicationRecord
   EMAIL_MAX_SIZE    = 100
   PASSWORD_MIN_SIZE = 8
   PASSWORD_MAX_SIZE = 100
-  PASSWORD_FORMAT   = /\A[A-Za-z0-9#$%&()*+,\-.\/:;<=>?@\[\]^_{|}~!]+\z/
+  PASSWORD_FORMAT   = %r(\A[A-Za-z0-9#$%&()*+,\-.\/:;<=>?@\[\]^_{|}~!]+\z)
 end

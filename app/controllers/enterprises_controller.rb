@@ -1,13 +1,15 @@
+# frozen_string_literal: true
+
 class EnterprisesController < ApplicationController
-  before_action :set_enterprise, only: [:show, :destroy]
+  before_action :set_enterprise, only: %i[show destroy]
 
   def index
     @enterprises = current_user.enterprises
   end
 
-  def show
-  end
+  def show; end
 
+  # rubocop:disable Lint/UselessAssignment
   def create
     # TODO: model にロジックを移したい
     ActiveRecord::Base.transaction do
@@ -18,6 +20,7 @@ class EnterprisesController < ApplicationController
     end
     render :show
   end
+  # rubocop:enable Lint/UselessAssignment
 
   # def update
   #   respond_to do |format|
@@ -36,6 +39,7 @@ class EnterprisesController < ApplicationController
   end
 
   private
+
     def set_enterprise
       @enterprise = current_user.enterprises.find_by(id: params[:id])
     end
