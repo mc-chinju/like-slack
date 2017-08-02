@@ -88,7 +88,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       @error_messages << "user.blank_login_error" && return unless params[:user].present? && params[:user][:login].present? && params[:user][:login].is_a?(String)
       @error_messages << "user.too_long_login_error" && return if params[:user][:login].size > User::LOGIN_MAX_SIZE
       @error_messages << "user.duplicate_login_error" && return if User.find_by(login: params[:user][:login]).present?
-      @error_messages << "user.invalid_login_format_error" && return unless params[:user][:login].start_with?(User::LOGIN_FORMAT)
+      @error_messages << "user.invalid_login_format_error" && return unless params[:user][:login] =~ User::LOGIN_FORMAT
     end
 
     def check_email
@@ -102,7 +102,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       @error_messages << "user.blank_password_error" && return unless params[:user].present? && params[:user][:password].present? && params[:user][:password].is_a?(String)
       @error_messages << "user.too_short_password_error" && return if params[:user][:password].size < User::PASSWORD_MIN_SIZE
       @error_messages << "user.too_long_password_error" && return if params[:user][:password].size > User::PASSWORD_MAX_SIZE
-      @error_messages << "user.invalid_password_format_error" && return unless params[:user][:password].start_with?(User::PASSWORD_FORMAT)
+      @error_messages << "user.invalid_password_format_error" && return unless params[:user][:password] =~ User::PASSWORD_FORMAT
       @error_messages << "user.invalid_password_confirmation_error" && return unless params[:user][:password] == params[:user][:password_confirmation]
     end
     # rubocop:enable all

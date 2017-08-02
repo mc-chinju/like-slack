@@ -41,7 +41,7 @@ class ApplicationController < ActionController::Base
   end
 
   def need_oauth_authenticate
-    request.path_info.start_with?(%r{\A\/api\/}) || Rails.env.test?
+    request.path_info.start_with?("api") || Rails.env.test?
   end
 
   protected

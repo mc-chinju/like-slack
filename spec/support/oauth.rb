@@ -32,7 +32,8 @@ module Oauth
   end
 
   # switch は性質上分岐を多くしたい
-  # rubocop:disable Style/CyclomaticComplexity Metrics/AbcSize
+  # rubocop:disable Style/CyclomaticComplexity
+  # rubocop:disable Metrics/AbcSize
   def switch(system_role)
     account =
       case system_role
@@ -51,6 +52,8 @@ module Oauth
       end
     login account.user
   end
+  # rubocop:enable Style/CyclomaticComplexity
+  # rubocop:enable Metrics/AbcSize
 
   def default_header
     if @access_token.present?
