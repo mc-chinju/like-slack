@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::Base
   # protect_from_forgery with: :exception, unless: :need_oauth_authenticate
 
@@ -39,10 +41,11 @@ class ApplicationController < ActionController::Base
   end
 
   def need_oauth_authenticate
-    /\A\/api\// === request.path_info || Rails.env.test?
+    request.path_info.start_with?(%r{\A\/api\/}) || Rails.env.test?
   end
 
   protected
+
     def configure_permitted_parameters
       devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(:enterprise_account, :login, :email, :password, :password_confirmation) }
       devise_parameter_sanitizer.permit(:sign_in) { |u| u.permit(:login, :email, :password, :remember_me) }
