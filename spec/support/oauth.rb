@@ -77,4 +77,5 @@ module Oauth
       }
     end
   end
+>>>>>>> development
 end

@@ -1,3 +1,5 @@
+$navbar-height: 50px
+
 html
   height: 100%
 body
@@ -65,18 +67,8 @@ label
   display: block
 .contents
   height: 100%
-  .header-container
-    background-color: #29314c
-    height: 70px
-    line-height: 70px
-    text-align: center
-    h1
-      color: #fff
-      margin: 0
-      display: inline
-      vertical-align: middle
   .root-container
-    height: calc(100% - 70px)
+    height: calc(100% - #{$navbar-height})
     .main-container
       position: relative
       height: 100%
