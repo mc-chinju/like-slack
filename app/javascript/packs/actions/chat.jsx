@@ -160,7 +160,7 @@ function switchChannelSuccess() {
 export function postSwitchChannel(channel_id) {
   return dispatch => {
     dispatch(switchChannel())
-    return axios.put('/channels/'+channel_id+'/switch.json',
+    return axios.put(`/channels/${channel_id}/switch.json`,
     {
       channel_id: channel_id
     },{withCredentials:true}
