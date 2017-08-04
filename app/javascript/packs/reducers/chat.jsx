@@ -1,4 +1,4 @@
-import { SEND } from '../actions/chat';
+import { SEND_MESSAGE } from '../actions/Chat';
 
 const initialState = {
   messages: [],
@@ -10,7 +10,7 @@ const initialState = {
 
 export default function chat(state = initialState, action) {
   switch (action.type) {
-    case 'SEND':
+    case 'SEND_MESSAGE':
     return Object.assign({}, state, {
       messages: state.messages.concat(action.messages),
     });

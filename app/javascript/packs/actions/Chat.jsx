@@ -1,48 +1,23 @@
 import axios from 'axios'
 import fetch from 'isomorphic-fetch'
-
-/* Actionsの実装 */
-
-// Action名の定義
-const SEND = 'SEND';
-const SET_CHANNELS = 'SET_CHANNELS';
-export const FETCH_CHANNELS = 'FETCH_CHANNELS'
-export const FETCH_CHANNELS_SUCCESS = 'FETCH_CHANNELS_SUCCESS'
-export const OPEN_MODAL = 'OPEN_MODAL'
-export const CLOSE_MODAL = 'CLOSE_MODAL'
-export const ADD_CHANNEL = 'ADD_CHANNEL'
-export const ADD_CHANNEL_SUCCESS = 'ADD_CHANNEL_SUCCESS'
-export const INPUT_CHANNEL = 'INPUT_CHANNEL'
-
-export const FETCH_MESSAGES = 'FETCH_MESSAGES'
-export const FETCH_MESSAGES_SUCCESS = 'FETCH_MESSAGES_SUCCESS'
-
-export const ADD_MESSAGE = 'ADD_MESSAGE'
-export const ADD_MESSAGE_SUCCESS = 'ADD_MESSAGE_SUCCESS'
-
-export const SWITCH_CHANNEL = 'SWITCH_CHANNEL'
-export const SWITCH_CHANNEL_SUCCESS = 'SWITCH_CHANNEL_SUCCESS'
-
-const feedURL = '/channels.json';
+import * as constants from "./ChatConstants";
 
 // Action Creators
-
 export function sendMessage(messages) {
-  // Action
   return {
-    type: SEND,
+    type: constants.SEND_MESSAGE,
     messages,
   };
 }
 function requestChannels() {
   return {
-    type: FETCH_CHANNELS
+    type: constants.FETCH_CHANNELS
   }
 }
 
 function receiveChannels(json) {
   return {
-    type: FETCH_CHANNELS_SUCCESS,
+    type: constants.FETCH_CHANNELS_SUCCESS,
     channels: json
   }
 }
@@ -57,24 +32,14 @@ export function fetchChannels() {
   }
 }
 
-export function openChannelModal() {
-  return {
-    type: OPEN_MODAL,
-  };
-}
-export function closeChannelModal() {
-  return {
-    type: CLOSE_MODAL,
-  };
-}
 function addNewChannel() {
   return {
-    type: ADD_CHANNEL,
+    type: constants.ADD_CHANNEL,
   };
 }
 function addNewChannelSuccess() {
   return {
-    type: ADD_CHANNEL_SUCCESS,
+    type: constants.ADD_CHANNEL_SUCCESS,
   };
 }
 export function postChannel(channelTitle) {
@@ -108,13 +73,13 @@ export function fetchMessages() {
 
 function requestMessages() {
   return {
-    type: FETCH_MESSAGES
+    type: constants.FETCH_MESSAGES
   }
 }
 
 function receiveMessages(json) {
   return {
-    type: FETCH_MESSAGES_SUCCESS,
+    type: constants.FETCH_MESSAGES_SUCCESS,
     messages: json
   }
 }
@@ -122,12 +87,12 @@ function receiveMessages(json) {
 // メッセージ送信
 function addNewMessage() {
   return {
-    type: ADD_MESSAGE,
+    type: constants.ADD_MESSAGE,
   };
 }
 function addNewMessageSuccess() {
   return {
-    type: ADD_MESSAGE_SUCCESS,
+    type: constants.ADD_MESSAGE_SUCCESS,
   };
 }
 export function postMessage(messageBody) {
@@ -149,12 +114,12 @@ export function postMessage(messageBody) {
 // channel switch
 function switchChannel() {
   return {
-    type: SWITCH_CHANNEL,
+    type: constants.SWITCH_CHANNEL,
   };
 }
 function switchChannelSuccess() {
   return {
-    type: SWITCH_CHANNEL_SUCCESS,
+    type: constants.SWITCH_CHANNEL_SUCCESS,
   };
 }
 export function postSwitchChannel(channel_id) {

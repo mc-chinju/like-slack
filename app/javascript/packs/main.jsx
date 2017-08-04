@@ -7,7 +7,8 @@ import Modal from 'react-modal';
 
 import { bindActionCreators } from 'redux';
 
-import * as Actions from './actions/chat';
+import * as chatActions from './actions/Chat';
+import * as commonActions from './actions/Common'
 import configureStore from './store/configureStore';
 import chat from './reducers/chat';
 // Components
@@ -61,7 +62,7 @@ class ChatMain extends React.Component {
         received(data) {
           // 受信したデータを解析して状態を更新する
           //this.props.onClick(data['comment'])
-          store.dispatch(Actions.sendMessage(data['comment']))
+          store.dispatch(chatActions.sendMessage(data['comment']))
         },
         speak(message) {
           // ケーブルを通してコメントを通知。サーバー側のspeakメソッドが呼び出される
@@ -73,13 +74,13 @@ class ChatMain extends React.Component {
   }
 
   openModal() {
-    this.props.openChannelModal()
+    this.props.openModal()
   }
   afterOpenModal() {
     // references are now sync'd and can be accessed.
   }
   closeModal() {
-    this.props.closeChannelModal();
+    this.props.closeModal();
   }
   channelCreate(e) {
     e.preventDefault();
@@ -146,7 +147,7 @@ function mapStateToProps(state) {
   };
 }
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(Actions, dispatch);
+  return bindActionCreators(commonActions, chatActions, dispatch);
 }
 const AppContainer = connect(
   mapStateToProps,
