@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 // 入力フォーム
 class FormInput extends React.Component {
   send(e) {
@@ -17,4 +17,4 @@ class FormInput extends React.Component {
   }
 }
 
-export default FormInput
+export default FormInput;
