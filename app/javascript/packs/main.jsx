@@ -1,6 +1,6 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import PropTypes from 'prop-types'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
 import { createStore } from 'redux';
 import { Provider, connect } from 'react-redux';
 import Modal from 'react-modal';
@@ -40,15 +40,15 @@ class ChatMain extends React.Component {
   componentDidMount() {
     // ビューのレンダリングが終わったら呼び出されるコールバックでチャンネルにケーブルを接続する
     this.subscriptChannel();
-    this.props.fetchChannels()
-    this.props.fetchMessages()
-    this.props.postSwitchChannel("1")
+    this.props.fetchChannels();
+    this.props.fetchMessages();
+    this.props.postSwitchChannel('1');
   }
 
   subscriptChannel() {
     App.chat = App.cable.subscriptions.create(
       // チャンネルの種類とスライドのIDを指定。これがサーバー側にparamsとしてセットされる。
-      { channel: "ChatChannel", chat_id: this.props.channels.id },
+      { channel: 'ChatChannel', chat_id: this.props.channels.id },
       {
         // ActionCableが接続されたときのコールバック
         connected() {
@@ -61,7 +61,7 @@ class ChatMain extends React.Component {
         received(data) {
           // 受信したデータを解析して状態を更新する
           //this.props.onClick(data['comment'])
-          store.dispatch(Actions.sendMessage(data['comment']))
+          store.dispatch(Actions.sendMessage(data['comment']));
         },
         speak(message) {
           // ケーブルを通してコメントを通知。サーバー側のspeakメソッドが呼び出される
@@ -73,7 +73,7 @@ class ChatMain extends React.Component {
   }
 
   openModal() {
-    this.props.openChannelModal()
+    this.props.openChannelModal();
   }
   afterOpenModal() {
     // references are now sync'd and can be accessed.
@@ -98,7 +98,7 @@ class ChatMain extends React.Component {
           onRequestClose={this.closeModal}
           style={customStyles}
           contentLabel="Example Modal"
-          >
+        >
 
           <h2 ref={subtitle => this.subtitle = subtitle}>チャンネル作成</h2>
           <form>
@@ -130,9 +130,9 @@ document.addEventListener('DOMContentLoaded', () => {
     <Provider store={store}>
       <AppContainer name="React" />
     </Provider>,
-    document.querySelector('.root-container'),
-  )
-})
+    document.querySelector('.root-container')
+  );
+});
 
 // Connect to Redux
 function mapStateToProps(state) {
