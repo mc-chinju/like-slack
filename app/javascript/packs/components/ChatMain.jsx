@@ -1,7 +1,7 @@
 import React from "react";
-import ChatDisplay from "./ChatDisplay";
-import ChannelDisplay from "./../channel/ChannelDisplay";
-import FormInput from "./FormInput";
+import ChatDisplay from "./chat/ChatDisplay";
+import ChannelDisplay from "./channel/ChannelDisplay";
+import FormInput from "./chat/FormInput";
 import Modal from "react-modal";
 
 const customStyles = {

@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
 
-import * as Actions from "./actions/chat";
 import configureStore from "./store/configureStore";
 import chat from "./reducers/chat";
 // Components
