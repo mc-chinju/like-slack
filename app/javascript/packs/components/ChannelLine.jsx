@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 // チャンネル表示
 class ChannelLine extends React.Component {
   send(e) {
