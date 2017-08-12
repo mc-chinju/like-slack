@@ -8,7 +8,8 @@ module UserPage
       @enterprises = current_user.enterprises
     end
 
-    def show; end
+    def show
+    end
 
     # rubocop:disable Lint/UselessAssignment
     def create

@@ -8,7 +8,8 @@ module UserPage
       @messages = current_channel.messages
     end
 
-    def show; end
+    def show
+    end
 
     def create
       @message = current_channel.messages.create!(message_params.merge(account: current_account))
