@@ -1,6 +1,6 @@
-import { createStore, combineReducers, applyMiddleware } from 'redux';
-import fromReducer from '../reducers/chat';
-import thunkMiddleware from 'redux-thunk';
+import { createStore, combineReducers, applyMiddleware } from "redux";
+import fromReducer from "../reducers/chat";
+import thunkMiddleware from "redux-thunk";
 
 /* Storeの実装 */
 

@@ -1,29 +1,29 @@
-import axios from 'axios';
-import fetch from 'isomorphic-fetch';
+import axios from "axios";
+import fetch from "isomorphic-fetch";
 
 /* Actionsの実装 */
 
 // Action名の定義
-const SEND = 'SEND';
-const SET_CHANNELS = 'SET_CHANNELS';
-export const FETCH_CHANNELS = 'FETCH_CHANNELS';
-export const FETCH_CHANNELS_SUCCESS = 'FETCH_CHANNELS_SUCCESS';
-export const OPEN_MODAL = 'OPEN_MODAL';
-export const CLOSE_MODAL = 'CLOSE_MODAL';
-export const ADD_CHANNEL = 'ADD_CHANNEL';
-export const ADD_CHANNEL_SUCCESS = 'ADD_CHANNEL_SUCCESS';
-export const INPUT_CHANNEL = 'INPUT_CHANNEL';
+const SEND = "SEND";
+const SET_CHANNELS = "SET_CHANNELS";
+export const FETCH_CHANNELS = "FETCH_CHANNELS";
+export const FETCH_CHANNELS_SUCCESS = "FETCH_CHANNELS_SUCCESS";
+export const OPEN_MODAL = "OPEN_MODAL";
+export const CLOSE_MODAL = "CLOSE_MODAL";
+export const ADD_CHANNEL = "ADD_CHANNEL";
+export const ADD_CHANNEL_SUCCESS = "ADD_CHANNEL_SUCCESS";
+export const INPUT_CHANNEL = "INPUT_CHANNEL";
 
-export const FETCH_MESSAGES = 'FETCH_MESSAGES';
-export const FETCH_MESSAGES_SUCCESS = 'FETCH_MESSAGES_SUCCESS';
+export const FETCH_MESSAGES = "FETCH_MESSAGES";
+export const FETCH_MESSAGES_SUCCESS = "FETCH_MESSAGES_SUCCESS";
 
-export const ADD_MESSAGE = 'ADD_MESSAGE';
-export const ADD_MESSAGE_SUCCESS = 'ADD_MESSAGE_SUCCESS';
+export const ADD_MESSAGE = "ADD_MESSAGE";
+export const ADD_MESSAGE_SUCCESS = "ADD_MESSAGE_SUCCESS";
 
-export const SWITCH_CHANNEL = 'SWITCH_CHANNEL';
-export const SWITCH_CHANNEL_SUCCESS = 'SWITCH_CHANNEL_SUCCESS';
+export const SWITCH_CHANNEL = "SWITCH_CHANNEL";
+export const SWITCH_CHANNEL_SUCCESS = "SWITCH_CHANNEL_SUCCESS";
 
-const feedURL = '/channels.json';
+const feedURL = "/channels.json";
 
 // Action Creators
 
@@ -49,7 +49,7 @@ function receiveChannels(json) {
 export function fetchChannels() {
   return dispatch => {
     dispatch(requestChannels());
-    return axios.get('/channels.json').then((response) => {
+    return axios.get("/channels.json").then((response) => {
       dispatch(receiveChannels(response.data));
     }).catch((response) => {
       console.log(response);
@@ -80,10 +80,10 @@ function addNewChannelSuccess() {
 export function postChannel(channelTitle) {
   return dispatch => {
     dispatch(addNewChannel());
-    return axios.post('/channels.json',
+    return axios.post("/channels.json",
       {
-        enterprise_id: '1',
-        owner_id: '1',
+        enterprise_id: "1",
+        owner_id: "1",
         name: channelTitle
       },{withCredentials:true}
     ).then((response) => {
@@ -98,7 +98,7 @@ export function postChannel(channelTitle) {
 export function fetchMessages() {
   return dispatch => {
     dispatch(requestMessages());
-    return axios.get('/messages.json').then((response) => {
+    return axios.get("/messages.json").then((response) => {
       dispatch(receiveMessages(response.data));
     }).catch((response) => {
       console.log(response);
@@ -133,7 +133,7 @@ function addNewMessageSuccess() {
 export function postMessage(messageBody) {
   return dispatch => {
     dispatch(addNewMessage());
-    return axios.post('/messages.json',
+    return axios.post("/messages.json",
       {
         body: messageBody
       },{withCredentials:true}
