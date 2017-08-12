@@ -1,5 +1,5 @@
-import React from 'react';
-import ChannelLine from './ChannelLine';
+import React from "react";
+import ChannelLine from "./ChannelLine";
 // チャンネル一覧
 class ChannelDisplay extends React.Component {
   render() {

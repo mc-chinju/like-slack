@@ -3,30 +3,12 @@
 class ApplicationController < ActionController::Base
   # protect_from_forgery with: :exception, unless: :need_oauth_authenticate
 
-  before_action :authenticate_user!
-  before_action :doorkeeper_authorize!, if: :need_oauth_authenticate
   before_action :configure_permitted_parameters, if: :devise_controller?
-  helper_method :current_enterprise, :current_account, :current_channel
+  helper_method :current_enterprise
 
-  def current_account
-    session[:account_id] ||= current_user&.accounts&.first&.id
-    current_user&.accounts&.find_by(id: session[:account_id])
-  end
-
+  # ログイン前においてもヘッダーにて使用されているため定義
   def current_enterprise
-    current_account&.enterprise
-  end
-
-  def current_channel
-    current_enterprise.channels.find_by(id: session[:channel_id])
-  end
-
-  def authenticate_user!
-    if need_oauth_authenticate
-      set_parameter_from_accesstoken
-    else
-      super
-    end
+    nil
   end
 
   def unset_parameters
@@ -38,10 +20,6 @@ class ApplicationController < ActionController::Base
     user = User.find_by(id: user_id)
     raise NotFound unless user.present?
     sign_in :user, user
-  end
-
-  def need_oauth_authenticate
-    request.path_info.start_with?("api") || Rails.env.test?
   end
 
   protected
