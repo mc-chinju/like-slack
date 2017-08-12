@@ -61,7 +61,8 @@ class ChatMain extends React.Component {
         received(data) {
           // 受信したデータを解析して状態を更新する
           //this.props.onClick(data['comment'])
-          store.dispatch(Actions.sendMessage(data['comment']));
+          //store.dispatch(Actions.sendMessage(data['message']));
+          store.dispatch(Actions.fetchMessages());
         },
         speak(message) {
           // ケーブルを通してコメントを通知。サーバー側のspeakメソッドが呼び出される
