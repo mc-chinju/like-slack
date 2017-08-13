@@ -3,6 +3,7 @@ import React from "react";
 class FormInput extends React.Component {
   send(e) {
     e.preventDefault();
+    if (!this.myInput.value.trim()) { return; }
     this.props.postMessage(this.myInput.value);
     this.myInput.value = "";
     return;
