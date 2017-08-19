@@ -6,9 +6,6 @@ import { Provider } from "react-redux";
 
 import configureStore from "./store/configureStore";
 import chat from "./reducers/chat";
-// Components
-import ChatMain from "./components/ChatMain";
-
 import AppContainer from "./containers/appContainer";
 
 const store = configureStore();
