@@ -68,7 +68,32 @@ export default function chat(state = initialState, action) {
       return Object.assign({}, state, {
         isFetching: false,
       });
+    case "UPDATE_MESSAGE":
+      return Object.assign({}, state, {
+        isFetching: true,
+      });
+    case "UPDATE_MESSAGE_SUCCESS":
+      let messages = state.messages.map((m)=>{
+        return message(m, action);
+      });
+      return Object.assign({}, state, {
+        isFetching: false,
+        messages
+      });
+    default:
+      return state;
+  }
+}
 
+const message = function(state, action) {
+  switch (action.type) {
+    case "UPDATE_MESSAGE_SUCCESS":
+      if(state.id !== action.id){
+        return state;
+      }
+      return Object.assign({}, state, {
+        body: action.body
+      });
     default:
       return state;
   }
