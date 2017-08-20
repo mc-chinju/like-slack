@@ -8,7 +8,7 @@ class ChatDisplay extends React.Component {
     return (
       <ul>
         {this.props.messages.map((message) =>
-          <ChatLine messageBody={message.body} key={message.id} />
+          <ChatLine messageBody={message.body} messageKey={message.id} />
         )}
       </ul>
     );
