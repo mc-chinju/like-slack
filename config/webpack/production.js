@@ -18,7 +18,7 @@ module.exports = merge(sharedConfig, {
       sourceMap: true,
 
       compress: {
-        warnings: true
+        warnings: false
       },
 
       output: {
@@ -33,3 +33,6 @@ module.exports = merge(sharedConfig, {
     })
   ]
 })
+
+
+warnings: true
