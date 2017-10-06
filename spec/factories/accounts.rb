@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: accounts
@@ -32,8 +34,8 @@ FactoryGirl.define do
       enterprise
     end
 
-    factory :owner_account_with_relations, traits: [:owner, :with_user, :with_enterprise]
-    factory :manager_account_with_relations, traits: [:manager, :with_user, :with_enterprise]
-    factory :visitor_account_with_relations, traits: [:visitor, :with_user, :with_enterprise]
+    factory :owner_account_with_relations, traits: %i[owner with_user with_enterprise]
+    factory :manager_account_with_relations, traits: %i[manager with_user with_enterprise]
+    factory :visitor_account_with_relations, traits: %i[visitor with_user with_enterprise]
   end
 end

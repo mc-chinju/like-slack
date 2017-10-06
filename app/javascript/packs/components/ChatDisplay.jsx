@@ -1,6 +1,6 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import ChatLine from './ChatLine';
+import React from "react";
+import PropTypes from "prop-types";
+import ChatLine from "./ChatLine";
 // チャット表示部分
 class ChatDisplay extends React.Component {
   render() {
@@ -18,4 +18,4 @@ ChatDisplay.propTypes = {
   messages: React.PropTypes.array,
 };
 
-export default ChatDisplay
+export default ChatDisplay;

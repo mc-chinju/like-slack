@@ -1,6 +1,9 @@
+# frozen_string_literal: true
+
 # TODO: リリース前には削除
 # development のテスト用データ
 
+# rubocop:disable all
 # user の作成
 owner = User.create!(
   login: "owner",
@@ -32,3 +35,4 @@ message = ChannelMember.create!(
   account_id: 1,
   channel_id: 1
 )
+# rubocop:enable all

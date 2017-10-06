@@ -1,12 +1,14 @@
+# frozen_string_literal: true
+
 describe "Enterprises API", type: :request do
   describe "GET /enterprises" do
     context "チーム一覧を取得" do
       context "ログインユーザーに紐付くチームを取得するとき" do
         subject { get "/enterprises" }
 
-        before {
+        before do
           create_list(:account, 4, :with_user, :with_enterprise, user: current_user)
-        }
+        end
 
         it "成功する" do
           expect(subject).to eq 200
@@ -22,10 +24,10 @@ describe "Enterprises API", type: :request do
       context "自身が所属する新規チームを作成するとき" do
         subject { post "/enterprises", @params }
 
-        before {
+        before do
           @attributes = attributes_for(:enterprise)
           @params = { enterprise: @attributes }
-        }
+        end
 
         it "成功する" do
           expect(subject).to eq 200

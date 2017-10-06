@@ -1,30 +1,30 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import PropTypes from 'prop-types'
-import { createStore } from 'redux';
-import { Provider, connect } from 'react-redux';
-import Modal from 'react-modal';
+import React from "react";
+import ReactDOM from "react-dom";
+import PropTypes from "prop-types";
+import { createStore } from "redux";
+import { Provider, connect } from "react-redux";
+import Modal from "react-modal";
 
-import { bindActionCreators } from 'redux';
+import { bindActionCreators } from "redux";
 
-import * as Actions from './actions/chat';
-import configureStore from './store/configureStore';
-import chat from './reducers/chat';
+import * as Actions from "./actions/chat";
+import configureStore from "./store/configureStore";
+import chat from "./reducers/chat";
 // Components
-import FormInput from './components/FormInput';
-import ChatDisplay from './components/ChatDisplay';
-import ChannelDisplay from './components/ChannelDisplay';
+import FormInput from "./components/FormInput";
+import ChatDisplay from "./components/ChatDisplay";
+import ChannelDisplay from "./components/ChannelDisplay";
 
 const store = configureStore();
 
 const customStyles = {
   content : {
-    top                   : '50%',
-    left                  : '50%',
-    right                 : 'auto',
-    bottom                : 'auto',
-    marginRight           : '-50%',
-    transform             : 'translate(-50%, -50%)'
+    top                   : "50%",
+    left                  : "50%",
+    right                 : "auto",
+    bottom                : "auto",
+    marginRight           : "-50%",
+    transform             : "translate(-50%, -50%)"
   }
 };
 
@@ -40,9 +40,9 @@ class ChatMain extends React.Component {
   componentDidMount() {
     // ビューのレンダリングが終わったら呼び出されるコールバックでチャンネルにケーブルを接続する
     this.subscriptChannel();
-    this.props.fetchChannels()
-    this.props.fetchMessages()
-    this.props.postSwitchChannel("1")
+    this.props.fetchChannels();
+    this.props.fetchMessages();
+    this.props.postSwitchChannel("1");
   }
 
   subscriptChannel() {
@@ -61,11 +61,11 @@ class ChatMain extends React.Component {
         received(data) {
           // 受信したデータを解析して状態を更新する
           //this.props.onClick(data['comment'])
-          store.dispatch(Actions.sendMessage(data['comment']))
+          store.dispatch(Actions.sendMessage(data["comment"]));
         },
         speak(message) {
           // ケーブルを通してコメントを通知。サーバー側のspeakメソッドが呼び出される
-          this.perform('speak', {message: message});
+          this.perform("speak", {message: message});
         }
       }
     );
@@ -73,7 +73,7 @@ class ChatMain extends React.Component {
   }
 
   openModal() {
-    this.props.openChannelModal()
+    this.props.openChannelModal();
   }
   afterOpenModal() {
     // references are now sync'd and can be accessed.
@@ -84,7 +84,7 @@ class ChatMain extends React.Component {
   channelCreate(e) {
     e.preventDefault();
     this.props.postChannel(this.channelInput.value);
-    this.channelInput.value = '';
+    this.channelInput.value = "";
     this.closeModal();
     return;
   }
@@ -98,7 +98,7 @@ class ChatMain extends React.Component {
           onRequestClose={this.closeModal}
           style={customStyles}
           contentLabel="Example Modal"
-          >
+        >
 
           <h2 ref={subtitle => this.subtitle = subtitle}>チャンネル作成</h2>
           <form>
@@ -125,14 +125,14 @@ class ChatMain extends React.Component {
   }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
   ReactDOM.render(
     <Provider store={store}>
       <AppContainer name="React" />
     </Provider>,
-    document.querySelector('.root-container'),
-  )
-})
+    document.querySelector(".root-container")
+  );
+});
 
 // Connect to Redux
 function mapStateToProps(state) {

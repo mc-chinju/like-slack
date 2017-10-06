@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateChannelMembers < ActiveRecord::Migration[5.1]
   def change
     create_table :channel_members do |t|

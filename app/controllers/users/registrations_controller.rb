@@ -1,6 +1,9 @@
+# frozen_string_literal: true
+
+# rubocop:disable ClassAndModuleChildren
 class Users::RegistrationsController < Devise::RegistrationsController
-# before_filter :configure_sign_up_params, only: [:create]
-# before_filter :configure_account_update_params, only: [:update]
+  # before_filter :configure_sign_up_params, only: [:create]
+  # before_filter :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
   # def new
@@ -9,7 +12,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    render :new and return unless check_user_params
+    render(:new) && return unless check_user_params
     ActiveRecord::Base.transaction do
       super do |user|
         # default params
@@ -64,12 +67,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
-  private
-    def admin_account_params
-    end
 
-    def enterprise_params
-    end
+  private
+
+    def admin_account_params; end
+
+    def enterprise_params; end
 
     def check_user_params
       @before_params  = params
@@ -77,28 +80,31 @@ class Users::RegistrationsController < Devise::RegistrationsController
       check_login_name
       check_email
       check_password
-      !@error_messages.any?
+      @error_messages.none?
     end
 
+    # rubocop:disable all
     def check_login_name
-      @error_messages << 'user.blank_login_error' and return unless params[:user].present? && params[:user][:login].present? && params[:user][:login].is_a?(String)
-      @error_messages << 'user.too_long_login_error' and return if params[:user][:login].size > User::LOGIN_MAX_SIZE
-      @error_messages << 'user.duplicate_login_error' and return if User.find_by(login: params[:user][:login]).present?
-      @error_messages << 'user.invalid_login_format_error' and return unless User::LOGIN_FORMAT === params[:user][:login]
+      @error_messages << "user.blank_login_error" && return unless params[:user].present? && params[:user][:login].present? && params[:user][:login].is_a?(String)
+      @error_messages << "user.too_long_login_error" && return if params[:user][:login].size > User::LOGIN_MAX_SIZE
+      @error_messages << "user.duplicate_login_error" && return if User.find_by(login: params[:user][:login]).present?
+      @error_messages << "user.invalid_login_format_error" && return unless params[:user][:login] =~ User::LOGIN_FORMAT
     end
 
     def check_email
-      @error_messages << 'user.blank_email_error' and return unless params[:user].present? && params[:user][:email].present?
-      @error_messages << 'user.invalid_email_error' and return unless params[:user][:email].is_a?(String) && params[:user][:email].valid_email?
-      @error_messages << 'user.too_long_email_error' and return if params[:user][:email].size > User::EMAIL_MAX_SIZE
-      @error_messages << 'user.duplicate_email_error' and return if User.find_by(email: params[:user][:email]).present?
+      @error_messages << "user.blank_email_error" && return unless params[:user].present? && params[:user][:email].present?
+      @error_messages << "user.invalid_email_error" && return unless params[:user][:email].is_a?(String) && params[:user][:email].valid_email?
+      @error_messages << "user.too_long_email_error" && return if params[:user][:email].size > User::EMAIL_MAX_SIZE
+      @error_messages << "user.duplicate_email_error" && return if User.find_by(email: params[:user][:email]).present?
     end
 
     def check_password
-      @error_messages << 'user.blank_password_error' and return unless params[:user].present? && params[:user][:password].present? && params[:user][:password].is_a?(String)
-      @error_messages << 'user.too_short_password_error' and return if params[:user][:password].size < User::PASSWORD_MIN_SIZE
-      @error_messages << 'user.too_long_password_error' and return if params[:user][:password].size > User::PASSWORD_MAX_SIZE
-      @error_messages << 'user.invalid_password_format_error' and return unless User::PASSWORD_FORMAT === params[:user][:password]
-      @error_messages << 'user.invalid_password_confirmation_error' and return unless params[:user][:password] == params[:user][:password_confirmation]
+      @error_messages << "user.blank_password_error" && return unless params[:user].present? && params[:user][:password].present? && params[:user][:password].is_a?(String)
+      @error_messages << "user.too_short_password_error" && return if params[:user][:password].size < User::PASSWORD_MIN_SIZE
+      @error_messages << "user.too_long_password_error" && return if params[:user][:password].size > User::PASSWORD_MAX_SIZE
+      @error_messages << "user.invalid_password_format_error" && return unless params[:user][:password] =~ User::PASSWORD_FORMAT
+      @error_messages << "user.invalid_password_confirmation_error" && return unless params[:user][:password] == params[:user][:password_confirmation]
     end
+    # rubocop:enable all
 end
+# rubocop:enable ClassAndModuleChildren
