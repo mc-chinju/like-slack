@@ -138,7 +138,7 @@ export function postMessage(messageBody) {
         body: messageBody
       },{withCredentials:true}
     ).then((response) => {
-      dispatch(fetchMessages());
+      //dispatch(fetchMessages());
       dispatch(addNewMessageSuccess());
     }).catch((response) => {
       console.log(response);
