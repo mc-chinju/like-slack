@@ -4,6 +4,7 @@ module Oauth
   def prepare_oauth
     enterprise = create :enterprise
     owner_account = create :owner_account_with_relations, enterprise: enterprise
+    channel = create :channel, owner_id: owner_account.id, enterprise: enterprise
     login owner_account.user
   end
 
@@ -20,7 +21,7 @@ module Oauth
   end
 
   def current_user
-    @account.try :user
+    @account&.user
   end
 
   def current_account
@@ -28,7 +29,12 @@ module Oauth
   end
 
   def current_enterprise
-    @account.try :enterprise
+    @account&.enterprise
+  end
+
+  def current_channel
+    # 本来は session で管理する
+    @account&.channels&.first
   end
 
   # switch は性質上分岐を多くしたい
