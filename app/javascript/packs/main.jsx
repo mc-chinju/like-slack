@@ -115,7 +115,10 @@ class ChatMain extends React.Component {
         </div>
         <div className="chat-area">
           <div className="chat-container">
-            <ChatDisplay messages={this.props.messages} />
+            <ChatDisplay
+              messages={this.props.messages}
+              updateMessage={this.props.updateMessage}
+            />
           </div>
           <div className="form-container">
             <FormInput postMessage={this.props.postMessage}/>

@@ -4,11 +4,11 @@ import ChatLine from "./ChatLine";
 // チャット表示部分
 class ChatDisplay extends React.Component {
   render() {
-    var key = 0;
+    let key = 0;
     return (
       <ul>
         {this.props.messages.map((message) =>
-          <ChatLine messageBody={message.body} key={message.id} />
+          <ChatLine messageBody={message.body} messageKey={message.id} updateMessage={this.props.updateMessage}/>
         )}
       </ul>
     );

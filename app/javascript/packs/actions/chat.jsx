@@ -23,6 +23,9 @@ export const ADD_MESSAGE_SUCCESS = "ADD_MESSAGE_SUCCESS";
 export const SWITCH_CHANNEL = "SWITCH_CHANNEL";
 export const SWITCH_CHANNEL_SUCCESS = "SWITCH_CHANNEL_SUCCESS";
 
+export const UPDATE_MESSAGE = "UPDATE_MESSAGE";
+export const UPDATE_MESSAGE_SUCCESS = "UPDATE_MESSAGE_SUCCESS";
+
 const feedURL = "/channels.json";
 
 // Action Creators
@@ -144,6 +147,36 @@ export function postMessage(messageBody) {
       console.log(response);
     });
   };
+}
+
+
+function requestUpdatingMessage(){
+  return {
+    type: UPDATE_MESSAGE,
+  }
+}
+function updateMessageSuccess(message, id) {
+  return {
+    type: UPDATE_MESSAGE_SUCCESS,
+    body: message,
+    id: id
+  };
+}
+
+export function updateMessage(messageBody, id) {
+  return dispatch => {
+    dispatch(requestUpdatingMessage());
+    return axios.put(`/messages/${id}.json`,
+      {
+        body: messageBody
+      },{withCredentials: true}
+    ).then((response) => {
+      let data = response.data;
+      dispatch(updateMessageSuccess(data.body, data.id));
+    }).catch((response) => {
+      console.log(response);
+    });
+  }
 }
 
 // channel switch
